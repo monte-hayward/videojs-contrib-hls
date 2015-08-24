@@ -196,7 +196,7 @@ var
         abort: function() {},
         buffered: videojs.createTimeRange(),
         appendBuffer: function() {}
-      }));
+      }))();
     },
   }),
 
@@ -447,7 +447,7 @@ test('re-initializes the playlist loader when switching sources', function() {
 });
 
 test('sets the duration if one is available on the playlist', function() {
-  var calls = 0, events = 0, duration = 0;
+  var events = 0;
   player.on('durationchange', function() {
     events++;
   });
@@ -2986,7 +2986,7 @@ test('treats invalid keys as a key request failure', function() {
   equal(bytes.length, 0, 'did not append bytes');
 
   // second segment request
-  requests[0].response = new Uint8Array([1, 2])
+  requests[0].response = new Uint8Array([1, 2]);
   requests.shift().respond(200, null, '');
 
   equal(bytes.length, 1, 'appended bytes');
